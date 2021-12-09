@@ -1,6 +1,10 @@
-title: CTalks
+title: Learn it!
 email: chandrakiran.g19@iiits.in
-description: My Blogsite
+description:
+  A personal blog page where I post about my understanding of various ML topics. Hope they'll help you out! And, don't hesitate to
+
+  <a class="contact-link" href="/contact">contact me</a>
+  if you need extra help :)
 author: Chandra Kiran G
 baseurl: ""
 url: "https://Chandu-4444.github.io"
