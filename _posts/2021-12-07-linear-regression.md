@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linear Regression: A mathematical perspective"
+title: "Linear Regression: What is it?"
 subtitle: "Looking at regression as a mathematician."
 background: ""
 use_math: true
@@ -8,31 +8,56 @@ use_math: true
 
 ### Overview
 
-The goal of machine learning algorithm is to extract a _relatioinship_ from the data. We need to approximate an unknown true function, _f(**x**)_. The approximate we try to find is $\hat{y} = h(\boldsymbol{X})$, the **hypothesis**. In case of linear regression, $y \in \mathbf{R}$ i.e our target variable is real valued.
+Linear regression has been regarded as the basic yet powerful _machine learning_ algorithm. Most beginners start their machine learning journey with this topic. This generally is a simple algorithm to use and understand. It intuitively makes sense, the **loss function**, the **best-fit** line etc. They all seem reasonable at first glance. But, did you ever think why that specific loss function is being used apart from other alternatives? What's there in it to understand mathematically? How will this help us? I'll try to answer all of these questions in this blog. Let's get started!
 
-### How to do it?
+### Gentle Introduction to Linear Regression
 
-Let's consider the following plot:
+Given a set of datapoints $(x_1, y_1), (x_2, y_2).., (x_n, y_n)$, we need to find a line that is a best representative of these points. How do we do that? That's the whole point of regression right! There are a couple of way to do it, but all of them do the same thing finally, finding the _best-fit_ line (2 dimension), hyperplane (N dimension).
 
-![Plot Image](/img/posts/linear-regresison/plot.png)
+![Datapoint Image](/img/posts/linear-regression/generated_data.svg)
 
-The red points $(x_1, y_1), (x_2, y_2) .., (x_n, y_n)$ are the samples from the true distribution (f) that we need to approximate. The very basic intuition we can come up with is something like $y = mx+c$. Yes, this is absolutely correct! Infact, the data I've generated above is based on that equation. We need to find $m$ and $c$ now. You might have learned the technique of deriving the equation of a line from two points, given that the two points lie on the line. This is good if the data looks exactly like a straight line. But look at the plot above, the points aren't very linear, I introduced some randomness in generating the data ($y = mx + c +\epsilon$). That's the reason they aren't so linear. This is often the case in data we get in real world cases. There will be some noise, some inconsistency, missing values etc among the data. The prime objective is to approximate the true function as close as possible, we might not need to be perfect. To be honest, we'll never be able to find the exact true function! Owing to the randomness in the generated data. So, we'll ignore the $\epsilon$ and pretend that it's never there.
+Considering 2D space, we need to find a line of form the $y=mx+c$. Finding this _best-fit_ line is what linear regresion is all about. Wait, wait! what's this _best-fit_ line by the way? Let's look at that.
 
-Let's get back to the question, finding $m$ and $c$. To match with conventional terms, let's make our $m = \beta_1$ and $c = \beta_0$. So our initial approximate funtion becomes $\hat{y} = \beta_1x + \beta_0$. Take note of that little hat ( $\hat{}$ ) above y, that indicates that the y is an approximate. Let's move on to the next section, where we look at our objective function.
+### Best-fit Line
 
-### Least-Squares Estimation of the parameters
+Simply put, a best-fit line is a line that fits the given data well. Yeah, I know it's pretty explainable from the name "best-fit". For the given data in the plot, the best-fit line is plotted below.
 
-The parameters $\beta_1$ and $\beta_0$ (**Regression Coefficients**) are unknown, and must be estimated from the data samples given to us $(x_1, y_1), (x_2, y_2) .., (x_n, y_n)$. The **method of least squares** is used to estimate $\beta_0$ and $\beta_1$. We are only interested in the difference of the actual $y_i$ and the predicted $\hat{y}_i$, that's the we're squaring the difference. The total error is sum of each $(y_i - \hat{y}_i)$.
+![Best Fit Line](/img/posts/linear-regression/generated_best_fit.svg)
 
-The first equation is called **population regression model** while the second is called **sample regresion model**, written in terms of the _n_ pairs of data. Using this latter notation, we formulate our least squares as follows:
+Wow, that fit quite well! How did I come to the conclusion that it fit the data well? Because it minimized my loss function! That takes us to the **loss function**. A best-fit line minimizes the loss function. Let's see what's this loss function is.
 
-There's actually a nice mathematical intuition on why least squares is the suitable objective function for linear regression that uses **maximum likelihood estimation** (I'll write about that in another post).
+### Loss Function
 
-Our problem boiled down to the above equation, we need to find $\beta_1$ and $\beta_0$ such that $\mathbf{L}$ will get minimised. What's that technique used to find minimum of a function? Differentiation ofcourse! We'll find the partial derivatives of $\mathbf{L}$ with respect to $\beta_1$ and $\beta_0$ and equate them to zero.
+A loss function is a function that tells us how close our predicted values are to the real values.
 
-```python
-import numpy as np
-import pandas as pd
+- A loss function should give 0 when our predictions are same as the original values.
+- A loss function should always be positive. Because, the best value we can get is 0, when we we're 100% correct with our predictions so negative values doesn't make sense!
 
-data = pd.read_csv("data.csv")
-```
+We'll use a loss function called **Mean Squared Error (MSE)**. The formula for the same is as follows:
+$$MSE=L=\frac{\sum _{i=1}^{n}( y_{i} -\hat{y}_{i})^{2}}{n}$$
+
+- $y_i$ is the actual value for sample $x_i$
+- $\hat{y_i}$ is the predicted values for $x_i$ ( $\hat{ }$ generally means approximate value).
+
+TODO: Add a trivia box saying about the interchange of terms error and loss.
+
+Our **MSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive) and taking their mean. Now, we need to minimize this function in order to get our best-fit line.
+
+The minimum of **MSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
+
+TODO: Add a trivia box saying about other loss functions.
+
+### Minimizing the loss function
+
+How do we minimize a function? By differentiation right! Luckily this is also the case here. We need to differentiate our **MSE** and equate it to 0 to get the parameters $m$ and $c$ that gives the minimum value for the function.
+Let's find the partial derivatives of **MSE** with respect to $m$ and $c$:
+
+$$
+\frac{\partial L }{\partial m} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})x_i=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c})x_i =0
+$$
+
+$$
+\frac{\partial L }{\partial c} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c}) =0
+
+
+$$
