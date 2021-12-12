@@ -34,7 +34,12 @@ A loss function is a function that tells us how close our predicted values are t
 - A loss function should always be positive. Because, the best value we can get is 0, when we we're 100% correct with our predictions so negative values doesn't make sense!
 
 We'll use a loss function called **Mean Squared Error (MSE)**. The formula for the same is as follows:
-$$MSE=L=\frac{\sum _{i=1}^{n}( y_{i} -\hat{y}_{i})^{2}}{n}$$
+
+$$
+MSE=L=\frac{\sum _{i=1}^{n}( y_{i} -\hat{y}_{i})^{2}}{n} = \frac{ \begin{array}{l}
+\sum _{i=1}^{n}( y_{i}  - \hat{m} x_{i}  - \hat{c})^{2}
+\end{array}}{n}
+$$
 
 - $y_i$ is the actual value for sample $x_i$
 - $\hat{y_i}$ is the predicted values for $x_i$ ( $\hat{ }$ generally means approximate value).
@@ -58,6 +63,4 @@ $$
 
 $$
 \frac{\partial L }{\partial c} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c}) =0
-
-
 $$
