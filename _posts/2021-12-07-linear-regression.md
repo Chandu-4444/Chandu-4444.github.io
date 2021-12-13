@@ -33,12 +33,10 @@ A loss function is a function that tells us how close our predicted values are t
 - A loss function should give 0 when our predictions are same as the original values.
 - A loss function should always be positive. Because, the best value we can get is 0, when we we're 100% correct with our predictions so negative values doesn't make sense!
 
-We'll use a loss function called **Mean Squared Error (MSE)**. The formula for the same is as follows:
+We'll use a loss function called **Sum of Squared Error (SSE)**. The formula for the same is as follows:
 
 $$
-MSE=L=\frac{\sum _{i=1}^{n}( y_{i} -\hat{y}_{i})^{2}}{n} = \frac{ \begin{array}{l}
-\sum _{i=1}^{n}( y_{i}  - \hat{m} x_{i}  - \hat{c})^{2}
-\end{array}}{n}
+SSE=L=\sum _{i=1}^{n}( y_{i} -\hat{y}_{i})^{2} = \sum _{i=1}^{n}( y_{i}  - \hat{m} x_{i}  - \hat{c})^{2}
 $$
 
 - $y_i$ is the actual value for sample $x_i$
@@ -46,21 +44,103 @@ $$
 
 TODO: Add a trivia box saying about the interchange of terms error and loss.
 
-Our **MSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive) and taking their mean. Now, we need to minimize this function in order to get our best-fit line.
+Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive) and taking their mean. Now, we need to minimize this function in order to get our best-fit line.
 
-The minimum of **MSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
+The minimum of **SSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
 
 TODO: Add a trivia box saying about other loss functions.
 
 ### Minimizing the loss function
 
-How do we minimize a function? By differentiation right! Luckily this is also the case here. We need to differentiate our **MSE** and equate it to 0 to get the parameters $m$ and $c$ that gives the minimum value for the function.
-Let's find the partial derivatives of **MSE** with respect to $m$ and $c$:
+How do we minimize a function? By differentiation right! Luckily this is also the case here. We need to differentiate our **SSE** and equate it to 0 to get the parameters $m$ and $c$ that gives the minimum value for the function.
+Let's find the partial derivatives of **SSE** with respect to $m$ and $c$:
 
 $$
-\frac{\partial L }{\partial m} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})x_i=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c})x_i =0
+\frac{\partial L }{\partial \hat{m}} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})x_i=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c})x_i =0
 $$
 
 $$
-\frac{\partial L }{\partial c} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c}) =0
+\frac{\partial L }{\partial \hat{c}} =-2\sum _{i=1}^{n}( y_{i} -\hat{y_i})=-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c}) =0
+$$
+
+Simplying the second equation (to make the process easier),
+
+$$
+\begin{split}
+\frac{\partial L }{\partial \hat{c}} & =-2\sum _{i=1}^{n}( y_{i} -\hat{m}x_{i} -\hat{c}) =0
+\\
+&\implies -2(\sum _{i=1}^{n}y_i-\sum _{i=1}^{n}\hat{m}x_i-\sum _{i=1}^{n}\hat{c})=0\\
+&\implies-2(\sum _{i=1}^{n}y_i-\hat{m}\sum _{i=1}^{n}x_i-\hat{c}\sum _{i=1}^{n}1)=0\\
+& \implies \sum _{i=1}^{n}y_i-\hat{m}\sum _{i=1}^{n}x_i-\hat{c}n=0\\
+& \implies \sum _{i=1}^{n}y_i-\hat{m}\sum _{i=1}^{n}x_i=\hat{c}n\\
+& \implies\hat{c} = \frac{\sum_{i=1}^ny_i}{n} - \hat{m}\frac{\sum_{i=1}^nx_i}{n}\\
+& \implies \boxed{\hat{c}=\bar{y}-\hat{m}\bar{x}}
+\end{split}
+\\
+$$
+
+We now need the value of $\hat{m}$, We'll solve this by using the value of $\hat{c}$ we obtained above:
+
+$$
+\begin{split}
+\frac{\partial L}{\partial \hat{m}} & = -2\sum_{i=1}^n(y_i-\hat{m}x_i-\hat{c})x_i=0\\
+& \implies \sum_{i=1}^ny_ix_i-\hat{m}\sum_{i=1}^nx_i^2-\hat{c}\sum_{i=1}^nx_i=0\\
+& \implies \hat{m}\sum_{i=1}^nx_i^2=\sum_{i=1}^ny_ix_i-\hat{c}\sum_{i=1}^nx_i\\
+& \text{Using the above value, } \hat{c}=\bar{y}-\hat{m}\bar{x}\\
+& \implies \hat{m}\sum_{i=1}^nx_i^2=\sum_{i=1}^ny_ix_i-\bigg[\frac{1}{n}\sum_{i=1}^ny_i - \hat{m}\frac{1}{n}\sum_{i=1}^nx_i\bigg]\sum_{i=1}^nx_i=0\\
+& \implies \hat{m}\sum_{i=1}^nx_i^2=\sum_{i=1}^ny_ix_i - \frac{1}{n}\sum_{i=1}^ny_i\sum_{i=1}^nx_i+\frac{\hat{m}}{n}(\sum_{i=1}^nx_i)^2=0\\
+& \implies \hat{m}\sum_{i=1}^nx_i^2-\frac{\hat{m}}{n}(\sum_{i=1}^nx_i)^2=\sum_{i=1}^ny_ix_i - \frac{1}{n}\sum_{i=1}^ny_i\sum_{i=1}^nx_i\\
+& \implies \hat{m}\bigg[\sum_{i=1}^nx_i^2- \frac{(\sum_{i=1}^nx_i)^2}{n}  \bigg] = \sum_{i=1}^ny_ix_i - \frac{\sum_{i=1}^ny_i\sum_{i=1}^nx_i}{n}\\
+& \implies \boxed{\hat{m} = \frac{\sum_{i=1}^ny_ix_i - \frac{1}{n}\sum_{i=1}^ny_i\sum_{i=1}^nx_i}{ \bigg[\sum_{i=1}^nx_i^2- \frac{1}{n}(\sum_{i=1}^nx_i)^2\bigg]}}
+\end{split}
+$$
+
+Uff, that took sometime with $\LaTeX$. Hopefully, I did everything without any mistakes. It look like I did! Coming back to the equations, we derived the solutions to find $\hat{m}$ and $\hat{c}$ this values gives the minimum value for our **SSE**. This is the basic structure of the **Ordinary Least Squares (OLS)** and this type of regression is called **Ordinary Least Squares Regression** (the name is pretty self explanatory).
+
+This works well for one _independent variable_ ($$x$$), but what if we have more? This is where we have to deal with vectors and matrices! Till now we've dealt with scalars, in the next section we'll derive the solutions to **SSE** using **OLS** for matrices. Buckle up for some matrix algebra!
+
+### OLS for matrices
+
+This kind of regression comes under **multiple regresion** where we have multiple input features with one real valued output. Our $$x_i \in R^k$$ i.e any point $$x_i$$ can be represented as $$(x^1, x^2..,x^k)$$.
+
+We need to change the notation here, from now on :
+
+- $$\mathbf{X}_{r\times c}$$ (bold uppercase letter) represents a matrix with $$r$$ rows and $$c$$ columns.
+- $$\mathbf{e}$$ (bold lowercase letter) represents a vector ($$r\text{x}1$$ dimension).
+- $$x$$ (lowercase letter) represents a scalar.
+
+I'll mention the dimension for the matrix where ever possible, cause this had been the cause for most of my _confusion_. I'll first walkthrought how we represent inputs in multiple regression.
+
+$$
+\mathbf{x}_i = [x^{1}_i, x^{2}_i.., x^{k}_i]\\
+\small{\text{ (Please note that these superscripts are not powers, they are dimensions) }}\\
+$$
+
+Each input vector has $k$ features.
+
+TODO: Make an info box about what are features?
+
+Now our Matrix $$\mathbf{X}_{n\times k}$$ contains $$\mathbf{x}_i$$ as its rows
+
+$$
+  \mathbf{X}_{n\times k} =
+  \left[ {\begin{array}{cc}
+    \mathbf{x}_{1} \\
+    \mathbf{x}_{2} \\
+    .\\
+    .\\
+    \mathbf{x}_{n}
+  \end{array} } \right] =
+  \left[ {\begin{array}{cc}
+          x_1^1 & x_1^2 & .., & x_1^k \\
+          x_2^1 & x_2^2 & .., & x_2^k \\
+          . & . & .., & . \\
+          x_n^1 & x_n^2 & .., & x_n^k\\
+      \end{array}} \right]
+$$
+
+Now our equation becomes,
+
+$$
+\mathbf{y} = \mathbf{X}_{n \times k}\mathbf{W}
 $$
