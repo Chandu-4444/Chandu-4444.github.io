@@ -95,7 +95,7 @@ $$
 \end{split}
 $$
 
-Uff, that took sometime with $\LaTeX$. Hopefully, I did everything without any mistakes. It look like I did! Coming back to the equations, we derived the solutions to find $\hat{m}$ and $\hat{c}$ this values gives the minimum value for our **SSE**. This is the basic structure of the **Ordinary Least Squares (OLS)** and this type of regression is called **Ordinary Least Squares Regression** (the name is pretty self explanatory).
+Uff, that took sometime with $\LaTeX$. Hopefully, I did everything without any mistakes. It looks like I did! Coming back to the equations, we derived the solutions to find $\hat{m}$ and $\hat{c}$ this values gives the minimum value for our **SSE**. This is the basic structure of the **Ordinary Least Squares (OLS)** and this type of regression is called **Ordinary Least Squares Regression** (the name is pretty self explanatory).
 
 This works well for one _independent variable_ ($$x$$), but what if we have more? This is where we have to deal with vectors and matrices! Till now we've dealt with scalars, in the next section we'll derive the solutions to **SSE** using **OLS** for matrices. Buckle up for some matrix algebra!
 
@@ -106,7 +106,7 @@ This kind of regression comes under **multiple regresion** where we have multipl
 We need to change the notation here, from now on :
 
 - $$\mathbf{X}_{r\times c}$$ (bold uppercase letter) represents a matrix with $$r$$ rows and $$c$$ columns.
-- $$\mathbf{e}$$ (bold lowercase letter) represents a vector ($$r\text{x}1$$ dimension).
+- $$\mathbf{x}$$ (bold lowercase letter) represents a vector.
 - $$x$$ (lowercase letter) represents a scalar.
 
 I'll mention the dimension for the matrix where ever possible, cause this had been the cause for most of my _confusion_. I'll first walkthrought how we represent inputs in multiple regression.
@@ -120,7 +120,7 @@ Each input vector has $k$ features.
 
 TODO: Make an info box about what are features?
 
-Now our Matrix $$\mathbf{X}_{n\times k}$$ contains $$\mathbf{x}_i$$ as its rows
+Now our Matrix $$\mathbf{X}_{n\times k}$$ contains $$\mathbf{x}_i$$ ($$1 \times k$$ dimension) as its rows
 
 $$
   \mathbf{X}_{n\times k} =
@@ -142,5 +142,70 @@ $$
 Now our equation becomes,
 
 $$
-\mathbf{y} = \mathbf{X}_{n \times k}\mathbf{W}
+\mathbf{\hat{y}} \text{ }(n \times 1 \text{ dimension}) = \mathbf{X}_{n \times k}\mathbf{W}_{k \times 1}
+$$
+
+This is an equation of a **hyperplane**. Now we need to introduce the _intercept_ term (Similar to $$\hat{c}$$ in $$\hat{y}=\hat{m}x+\hat{c}$$). For this, I think it's better to start with 2D again.
+
+We'll try to vectorize the 2D equation:
+
+$$
+\hat{y} = \left[ {\begin{array}{cc} x \text{ } 1 \end{array} } \right] \left[ {\begin{array}{cc}
+    \hat{m} \\
+    \hat{c} \\
+  \end{array} } \right] = \hat{m}x + 1 \cdot \hat{c}
+$$
+
+Observe the $$1$$ appended to the input vector. This acommodates for the intercept term. Using this intuition, we'll now add the intercept term to our equation. Our input matrix $$\mathbf{X}$$ becomes:
+
+$$
+  \mathbf{X}_{n\times (k+1)} =
+  \left[ {\begin{array}{cc}
+    \mathbf{x}_{1} & 1 \\
+    \mathbf{x}_{2} & 1 \\
+    .\\
+    .\\
+    \mathbf{x}_{n} & 1
+  \end{array} } \right] =
+  \left[ {\begin{array}{cc}
+          x_1^1 & x_1^2 & .., & x_1^k & 1 \\
+          x_2^1 & x_2^2 & .., & x_2^k & 1\\
+          . & . & .., & . \\
+          x_n^1 & x_n^2 & .., & x_n^k & 1\\
+      \end{array}} \right]
+$$
+
+Our _weight_ (or slope) vector $$\mathbf{W}$$ becomes:
+
+$$
+\mathbf{W}_{(k+1) \times 1} = \left[ {\begin{array}{cc}
+    w_1 \\
+    w_2 \\
+    . \\
+    . \\
+    w_k\\
+    w_0
+  \end{array} } \right]
+$$
+
+For historic reasons (not really), we'll now refer to our interept term with $$w_0$$. Finally rewriting our equation:
+
+$$
+\mathbf{\hat{y}} \text{ }(n \times 1 \text{ dimension}) = \mathbf{X}_{n \times (k+1)}\mathbf{W}_{(k+1) \times 1}
+$$
+
+Ok, we've formulated our equation. Next comes the loss function, which will be the same **Sum of Squared Error (SSE)** we've seen earlier:
+
+$$
+\text{Error in prediction} = \mathbf{y} - \mathbf{\hat{y}} \\
+$$
+
+We need to square this to avoid negative error :
+
+$$
+\text{SSE} = (\mathbf{y} - \mathbf{\hat{y}})^2 = (\mathbf{y} - \mathbf{\hat{y}})^T(\mathbf{y} - \mathbf{\hat{y}}) = (\mathbf{y} - \mathbf{X}\mathbf{W})^T(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ }[\text{Using the result } \mathbf{X}^2 = \mathbf{X}^T\mathbf{X}] \\
+
+\text{SSE} = (\mathbf{y}^T - \mathbf{W}^T\mathbf{X}^T)(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ }[\text{Using the result } (\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T] \\
+\text{Expanding this we get, } \\
+\text{SSE} = \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{X}\mathbf{W} - \mathbf{W}^T\mathbf{X}^T\mathbf{y} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}\\
 $$
