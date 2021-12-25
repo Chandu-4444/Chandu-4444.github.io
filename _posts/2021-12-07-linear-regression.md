@@ -200,12 +200,33 @@ $$
 \text{Error in prediction} = \mathbf{y} - \mathbf{\hat{y}} \\
 $$
 
-We need to square this to avoid negative error :
+We need to square this to avoid negative error:
 
 $$
-\text{SSE} = (\mathbf{y} - \mathbf{\hat{y}})^2 = (\mathbf{y} - \mathbf{\hat{y}})^T(\mathbf{y} - \mathbf{\hat{y}}) = (\mathbf{y} - \mathbf{X}\mathbf{W})^T(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ }[\text{Using the result } \mathbf{X}^2 = \mathbf{X}^T\mathbf{X}] \\
+{\begin{array}{cc}
+    \text{SSE} = (\mathbf{y} - \mathbf{\hat{y}})^2 = (\mathbf{y} - \mathbf{\hat{y}})^T(\mathbf{y} - \mathbf{\hat{y}}) = (\mathbf{y} - \mathbf{X}\mathbf{W})^T(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ } & [\text{Using the result } \mathbf{X}^2 = \mathbf{X}^T\mathbf{X}] \\
 
-\text{SSE} = (\mathbf{y}^T - \mathbf{W}^T\mathbf{X}^T)(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ }[\text{Using the result } (\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T] \\
-\text{Expanding this we get, } \\
-\text{SSE} = \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{X}\mathbf{W} - \mathbf{W}^T\mathbf{X}^T\mathbf{y} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}\\
+    \text{SSE} = (\mathbf{y}^T - \mathbf{W}^T\mathbf{X}^T)(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ } & [\text{Using the result } (\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T] \\
+    \text{Expanding this we get, } \\
+
+    \text{SSE} = \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{X}\mathbf{W} - \mathbf{W}^T\mathbf{X}^T\mathbf{y} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}\\
+\end{array} }
+$$
+
+Now, $$\mathbf{y}^T\mathbf{X}\mathbf{W}$$ and $$\mathbf{W}^T\mathbf{X}^T\mathbf{y}$$ produces the same result (feel free to try it on few examples).
+
+$$
+\text{SSE} = \mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{X}\mathbf{W} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}
+$$
+
+The next step is to take the derivative of SSE with respect to matrix $$\mathbf{W}$$. Since we're dealing with set of variables (the constant and regression coefficients) we again use partial differentiation:
+
+$$
+\begin{split}
+  \frac{\partial SSE}{\partial \mathbf{W}} & = \frac{\partial }{\partial \mathbf{W}} (\mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{X}\mathbf{W} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}) \\
+  & \implies \frac{\partial}{\partial \mathbf{W}}(\mathbf{y}^T\mathbf{y}) - \frac{\partial}{\partial \mathbf{W}}(2\mathbf{y}^T\mathbf{X}\mathbf{W}) + \frac{\partial}{\partial \mathbf{W}}(\mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}) \\
+  & \implies
+\end{split}
+
+
 $$
