@@ -198,3 +198,21 @@ img::-moz-selection {
     }
   }
 }
+
+.todo-container {
+  background-color: rgb(255, 255, 155);
+  padding: 10px;
+  margin: 20px;
+  margin-left: 0;
+  border-radius: 10px;
+}
+
+.todo-icon {
+  font-size: 40px;
+}
+
+.todo-head {
+  font-weight: 900;
+  font-style: italic;
+  font-size: 20px;
+}

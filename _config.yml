@@ -28,3 +28,5 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
 highlighter: rouge
+
+staticman_url: https://api.staticman.net/v3/entry/github/Chandu-4444/Chandu-4444.github.io/master/comments

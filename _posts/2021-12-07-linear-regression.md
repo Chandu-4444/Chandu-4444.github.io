@@ -42,13 +42,16 @@ $$
 - $y_i$ is the actual value for sample $x_i$
 - $\hat{y_i}$ is the predicted values for $x_i$ ( $\hat{ }$ generally means approximate value).
 
-TODO: Add a trivia box saying about the interchange of terms error and loss.
+<div class="todo-container">
+<span class="todo-icon">💡</span> <span class="todo-head">Loss VS Error, Do we care? </span>
+<div class="todo-body">
+I intentionally used the term <i>loss</i> initially just to make you get the essence of the similarity between <i>loss</i> and <i>error</i>. These are basically the same. If the error is high, our loss is also high (Think of it as a game of bow and arrow).
+</div>
+</div>
 
 Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive) and taking their mean. Now, we need to minimize this function in order to get our best-fit line.
 
 The minimum of **SSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
-
-TODO: Add a trivia box saying about other loss functions.
 
 ### Minimizing the loss function
 
@@ -118,7 +121,13 @@ $$
 
 Each input vector has $k$ features.
 
-TODO: Make an info box about what are features?
+<div class="todo-container">
+<span class="todo-icon">💡</span> <span class="todo-head">What are features btw?</span>
+
+<div class="todo-body">
+Features are any attributes that might be useful in predicting our output variable. For example, <i>Plot Area</i>, <i>Neighbourhood</i>, <i>Number of Floors</i> etc might be the features when predicting the <i>Price of a house</i>
+</div>
+</div>
 
 Now our Matrix $$\mathbf{X}_{n\times k}$$ contains $$\mathbf{x}_i$$ ($$1 \times k$$ dimension) as its rows
 
@@ -225,8 +234,74 @@ $$
 \begin{split}
   \frac{\partial SSE}{\partial \mathbf{W}} & = \frac{\partial }{\partial \mathbf{W}} (\mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{X}\mathbf{W} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}) \\
   & \implies \frac{\partial}{\partial \mathbf{W}}(\mathbf{y}^T\mathbf{y}) - \frac{\partial}{\partial \mathbf{W}}(2\mathbf{y}^T\mathbf{X}\mathbf{W}) + \frac{\partial}{\partial \mathbf{W}}(\mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}) \\
-  & \implies
 \end{split}
+$$
 
+This looks like something new if you don't know calculus on matrices. I'll try to map this with linear context.
+
+The first term $$\mathbf{y}^T\mathbf{y}$$ is a constant when differentiating with respect to $$\mathbf{W}$$. So this will be $$0$$.
+
+The second term $$2\mathbf{y}^T\mathbf{X}\mathbf{W}$$ this is a "linear form" in $$\mathbf{W}$$ and is equivalent to scalar term in which the variable we are differentiating with respect to is raised to the first power. This means that we can get the derivative by dropping the $$\mathbf{W}$$. Since this is matrix calculus, we need to takt the transpose of whatever's remaining, giving us $$-2\mathbf{X}^T\mathbf{y}$$.
+
+The final term $$\mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}$$, is a "quadratic form" and is equivalent to scalar term in which the variable we are differentiating with respect to is raised to the second power. This indicates that we can get the derivative by dropping $$\mathbf{W}$$ and then taking the transpose, finally multiplying this by 2 giving us $$2\mathbf{X}^T\mathbf{X}\mathbf{W}$$.
 
 $$
+\begin{split}
+  \frac{\partial SSE}{\partial \mathbf{W}} & = \frac{\partial}{\partial \mathbf{W}}(\mathbf{y}^T\mathbf{y}) - \frac{\partial}{\partial \mathbf{W}}(2\mathbf{y}^T\mathbf{X}\mathbf{W}) + \frac{\partial}{\partial \mathbf{W}}(\mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}) \\
+  & \implies 0 - 2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{W} \\
+  & \text{Equating this to 0 as we did for linear case previously,} \\
+  & \implies - 2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{W} = 0 \\
+  & \implies 2\mathbf{X}^T\mathbf{X}\mathbf{W} = 2\mathbf{X}^T\mathbf{y} \\
+  & \implies \mathbf{X}^T\mathbf{X}\mathbf{W} = \mathbf{X}^T\mathbf{y} \\
+  & \text{Multiplying } (\mathbf{X}^T\mathbf{X})^{-1} \text{ on both sides,} \\
+  & \implies (\mathbf{X}^T\mathbf{X})^{-1} (\mathbf{X}^T\mathbf{X})\mathbf{W} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y} \\
+  & \implies \mathbf{I}\mathbf{W} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y} \\
+  & \implies  \boxed{\mathbf{W} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{y}} \\
+\end{split}
+$$
+
+Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**.
+
+This way, we can compute the best-fit line or hyperplane without gradient descent.
+
+<!-- Comments -->
+
+{% if site.data.comments[page.slug] %}
+
+<h3>
+{% if site.data.comments[page.slug].size > 1 %}
+{{ site.data.comments[page.slug] | size }}
+{% endif %}
+Comments:
+</h3>
+{% assign comments = site.data.comments[page.slug] | sort %}
+{% for comment in comments %}
+<label>
+{% if comment[1].url %}
+<a href="{{ comment[1].url }}">
+{% endif %}
+<strong>{{ comment[1].name }}</strong>
+{% if comment[1].url %}
+</a>
+{% endif %}
+</label>
+<em>{{ comment[1].date | date: "%B %d, %Y" }}</em>
+<p>{{ comment[1].message | markdownify }}</p>
+{% endfor %}
+{% endif %}
+
+<!-- Comments Form -->
+  <form method="POST" action="{{ site.staticman_url }}">
+    <input name="options[redirect]" type="hidden" value="https://example.com">
+    <input name="options[slug]" type="hidden" value="{{ page.slug }}">
+      <label>Name</label>
+      <input name="fields[name]" type="text">
+      <label>E-mail (optional)</label>
+      <input name="fields[email]" type="email">
+      <label>Website (optional)</label>
+      <input name="fields[url]" type="url">
+      <label>Message</label>
+      <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
+      <small>Comments will appear after moderation.</small>
+      <button type="submit">Submit comment</button>
+  </form>
