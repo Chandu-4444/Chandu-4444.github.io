@@ -7,10 +7,6 @@ use_math: true
 comments: true
 ---
 
-{% if page.comments %}
-{% include disqus.html %}
-{% endif %}
-
 ### Overview
 
 Linear regression has been regarded as the basic yet powerful _machine learning_ algorithm. Most beginners start their machine learning journey with this topic. This generally is a simple algorithm to use and understand. It intuitively makes sense, the **loss function**, the **best-fit** line etc. They all seem reasonable at first glance. But, did you ever think why that specific loss function is being used apart from other alternatives? What's there in it to understand mathematically? How will this help us? I'll try to answer all of these questions in this blog. Let's get started!
@@ -268,3 +264,5 @@ $$
 Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**.
 
 This way, we can compute the best-fit line or hyperplane without gradient descent.
+
+{% include disqus.html %}
