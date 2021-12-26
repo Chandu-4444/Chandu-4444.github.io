@@ -4,7 +4,12 @@ title: "Linear Regression: What is it?"
 subtitle: "Looking at regression as a mathematician."
 background: ""
 use_math: true
+comments: true
 ---
+
+{% if page.comments %}
+{% include disqus.html %}
+{% endif %}
 
 ### Overview
 
@@ -263,45 +268,3 @@ $$
 Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**.
 
 This way, we can compute the best-fit line or hyperplane without gradient descent.
-
-<!-- Comments -->
-
-{% if site.data.comments[page.slug] %}
-
-<h3>
-{% if site.data.comments[page.slug].size > 1 %}
-{{ site.data.comments[page.slug] | size }}
-{% endif %}
-Comments:
-</h3>
-{% assign comments = site.data.comments[page.slug] | sort %}
-{% for comment in comments %}
-<label>
-{% if comment[1].url %}
-<a href="{{ comment[1].url }}">
-{% endif %}
-<strong>{{ comment[1].name }}</strong>
-{% if comment[1].url %}
-</a>
-{% endif %}
-</label>
-<em>{{ comment[1].date | date: "%B %d, %Y" }}</em>
-<p>{{ comment[1].message | markdownify }}</p>
-{% endfor %}
-{% endif %}
-
-<!-- Comments Form -->
-  <form method="POST" action="{{ site.staticman_url }}">
-    <input name="options[redirect]" type="hidden" value="https://example.com">
-    <input name="options[slug]" type="hidden" value="{{ page.slug }}">
-      <label>Name</label>
-      <input name="fields[name]" type="text">
-      <label>E-mail (optional)</label>
-      <input name="fields[email]" type="email">
-      <label>Website (optional)</label>
-      <input name="fields[url]" type="url">
-      <label>Message</label>
-      <textarea style="width:100%" name="fields[message]" rows="12"></textarea>
-      <small>Comments will appear after moderation.</small>
-      <button type="submit">Submit comment</button>
-  </form>
