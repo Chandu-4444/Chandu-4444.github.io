@@ -1,12 +1,31 @@
 <!-- Footer -->
 
-<hr>
+<hr />
 
 <footer>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <ul class="list-inline text-center">
+          <!-- newsletter -->
+          <div class="newsletter-container">
+            <h4 class="newsletter-title">Subscribe</h4>
+            <p>Hey, let's get connected. Subscribe to my newsletter!</p>
+            <form
+              action="https://feedburner.google.com/fb/a/mailverify"
+              method="post"
+              target="popupwindow"
+              onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=chandrakiran/VDNx', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"
+            >
+              <input placeholder="Enter your email" type="text" name="email" />
+              <input type="hidden" value="chandrakiran/VDNx" name="uri" /><input
+                type="hidden"
+                name="loc"
+                value="en_US"
+              /><input type="submit" value="Subscribe" />
+            </form>
+          </div>
+
           {% if site.email %}
           <li class="list-inline-item">
             <a href="mailto:{{ site.email | encode_email }}">
@@ -16,8 +35,7 @@
               </span>
             </a>
           </li>
-          {% endif %}
-          {% if site.twitter_username %}
+          {% endif %} {% if site.twitter_username %}
           <li class="list-inline-item">
             <a href="https://twitter.com/{{ site.twitter_username }}">
               <span class="fa-stack fa-lg">
@@ -26,8 +44,7 @@
               </span>
             </a>
           </li>
-          {% endif %}
-          {% if site.facebook_username %}
+          {% endif %} {% if site.facebook_username %}
           <li class="list-inline-item">
             <a href="https://www.facebook.com/{{ site.facebook_username }}">
               <span class="fa-stack fa-lg">
@@ -36,8 +53,7 @@
               </span>
             </a>
           </li>
-          {% endif %}
-          {% if site.linkedin_username %}
+          {% endif %} {% if site.linkedin_username %}
           <li class="list-inline-item">
             <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
               <span class="fa-stack fa-lg">
@@ -46,8 +62,7 @@
               </span>
             </a>
           </li>
-          {% endif %}
-          {% if site.github_username %}
+          {% endif %} {% if site.github_username %}
           <li class="list-inline-item">
             <a href="https://github.com/{{ site.github_username }}">
               <span class="fa-stack fa-lg">
@@ -56,8 +71,7 @@
               </span>
             </a>
           </li>
-          {% endif %}
-          {% if site.instagram_username %}
+          {% endif %} {% if site.instagram_username %}
           <li class="list-inline-item">
             <a href="https://instagram.com/{{ site.instagram_username }}">
               <span class="fa-stack fa-lg">
@@ -68,7 +82,9 @@
           </li>
           {% endif %}
         </ul>
-        <p class="copyright text-muted">Copyright &copy; {{ site.author }} {{ 'now' | date: "%Y" }}</p>
+        <p class="copyright text-muted">
+          Copyright &copy; {{ site.author }} {{ 'now' | date: "%Y" }}
+        </p>
       </div>
     </div>
   </div>
