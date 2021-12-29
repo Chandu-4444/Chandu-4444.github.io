@@ -263,7 +263,7 @@ $$
 
 Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**.
 
-This way, we can compute the best-fit line or hyperplane without gradient descent. Below is the simple snippet that shows how to perform linear regression using scikit-learn in Python. (This is just an example, I did not implemented it from scratch!)
+This way, we can compute the best-fit line or hyperplane without gradient descent. Below is the simple snippet that shows how to perform linear regression using scikit-learn in Python. (This is just an example, I did not implemented it from scratch! You can try implementing it from the scratch)
 
 Code Link: [Github Link](https://github.com/Chandu-4444/Chandu-4444.github.io/blob/master/code/linear-regression/script.py)
 
