@@ -5,6 +5,7 @@ subtitle: "Looking at regression as a mathematician."
 background: ""
 use_math: true
 comments: true
+toc: true
 ---
 
 ### Overview
@@ -213,14 +214,13 @@ $$
 We need to square this to avoid negative error:
 
 $$
-{\begin{array}{cc}
-    \text{SSE} = (\mathbf{y} - \mathbf{\hat{y}})^2 = (\mathbf{y} - \mathbf{\hat{y}})^T(\mathbf{y} - \mathbf{\hat{y}}) = (\mathbf{y} - \mathbf{X}\mathbf{W})^T(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ } & [\text{Using the result } \mathbf{X}^2 = \mathbf{X}^T\mathbf{X}] \\
+{\begin{split}
+    \text{SSE} & = (\mathbf{y} - \mathbf{\hat{y}})^2 = (\mathbf{y} - \mathbf{\hat{y}})^T(\mathbf{y} - \mathbf{\hat{y}}) = (\mathbf{y} - \mathbf{X}_{n \times (k+1)}\mathbf{W}_{(k+1) \times 1})^T(\mathbf{y} - \mathbf{X}_{n \times (k+1)}\mathbf{W}_{(k+1) \times 1}) \text{ } & [\text{Using the result } \mathbf{X}^2 = \mathbf{X}^T\mathbf{X}] \\
 
-    \text{SSE} = (\mathbf{y}^T - \mathbf{W}^T\mathbf{X}^T)(\mathbf{y} - \mathbf{X}\mathbf{W}) \text{ } & [\text{Using the result } (\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T] \\
-    \text{Expanding this we get, } \\
+    & \implies (\mathbf{y}^T - \mathbf{W}_{1 \times (k+1)}^T\mathbf{X}_{(k+1) \times n}^T)(\mathbf{y} - \mathbf{X}_{n \times (k+1)}\mathbf{W}_{(k+1) \times 1}) \text{ } & [\text{Using the result } (\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T] \\
 
-    \text{SSE} = \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{X}\mathbf{W} - \mathbf{W}^T\mathbf{X}^T\mathbf{y} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W}\\
-\end{array} }
+    & \implies \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{X}\mathbf{W} - \mathbf{W}^T\mathbf{X}^T\mathbf{y} + \mathbf{W}^T\mathbf{X}^T\mathbf{X}\mathbf{W} \text{ } & [\text{I won't mention dimensions anymore } ] \\
+\end{split} }
 $$
 
 Now, $$\mathbf{y}^T\mathbf{X}\mathbf{W}$$ and $$\mathbf{W}^T\mathbf{X}^T\mathbf{y}$$ produces the same result (feel free to try it on few examples).
@@ -263,8 +263,6 @@ $$
 
 Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**.
 
-This way, we can compute the best-fit line or hyperplane without gradient descent. Below is the simple snippet that shows how to perform linear regression using scikit-learn in Python. (This is just an example, I did not implemented it from scratch! You can try implementing it from the scratch)
-
-Code Link: [Github Link](https://github.com/Chandu-4444/Chandu-4444.github.io/blob/master/code/linear-regression/script.py)
+That's the mathematical reason behind the first ML algorithm you've probably learnt! Stay tuned for more :) Also, do let me know in the comments if you find any error or any suggestion.
 
 {% include disqus.html %}

@@ -26,7 +26,16 @@ paginate_path: "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-toc
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
 highlighter: rouge
 
 staticman_url: https://api.staticman.net/v3/entry/github/Chandu-4444/Chandu-4444.github.io/master/comments
+
+# TOC Settings
+toc:
+ min_level: 1
+ max_level: 3
+ list_class: toc
+ list_class: toc__list
+ sublist_class: toc__sublist
