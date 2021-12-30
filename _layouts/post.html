@@ -24,6 +24,12 @@ layout: default
               >{{ page.date | date: '%B %d, %Y' }} &middot; {% include
               read_time.html content=page.content %}
             </span>
+            <span class="tags-container">
+              {% for tag in page.tags %}
+                {% capture tag_name %}{{ tag }}{% endcapture %}
+                <span class="tag"><a  href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a></span>
+              {% endfor %}
+            </span>
           </div>
         </div>
       </div>
@@ -33,7 +39,10 @@ layout: default
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-10 mx-auto">
+       
         {{ content | toc }}
+
+        
 
         <hr />
 
@@ -60,5 +69,6 @@ layout: default
         </div>
       </div>
     </div>
+   
   </div>
 </header>

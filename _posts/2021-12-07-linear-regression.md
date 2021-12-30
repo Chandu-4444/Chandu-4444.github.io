@@ -3,6 +3,7 @@ layout: post
 title: "Linear Regression: What is it?"
 subtitle: "Looking at regression as a mathematician."
 background: ""
+tags: theory maths
 use_math: true
 comments: true
 toc: true

@@ -251,3 +251,25 @@ img::-moz-selection {
 #toc a:hover {
     // color: #9d174d;
 }
+
+// For TAGS
+
+.tags-container {
+    font-size: 15px;
+    display: block;
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.tag a {
+    color: white;
+    text-decoration: none;
+}
