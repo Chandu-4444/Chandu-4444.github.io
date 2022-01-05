@@ -80,3 +80,5 @@ I suggest going through the following order
 - Read few chapters from [Python Data Science Handbook](https://www.amazon.in/Python-Data-Science-Handbook-Essential/dp/9352134915/ref=sr_1_1?hvadid=72980161955818&hvbmt=be&hvdev=c&hvqmt=e&keywords=python+data+science+handbook&qid=1641362580&sr=8-1){:target="_blank"} and [Hands-On Machine Learning with Scikit-Learn, Keras and Tensor Flow](https://www.amazon.in/Hands-Machine-Learning-Scikit-Learn-Tensor/dp/9352139054){:target="_blank"}
 - [Machine Learning Course by Coding Blocks](https://online.codingblocks.com/courses/machine-learning-course-online){:target="_blank"}
 - Finaly keep practising from [Kaggle](https://www.kaggle.com/){:target="_blank"}.
+
+Apart from the above resources I'll keep sharing additional resources through my newsletter, so make sure you subscribe to it.
