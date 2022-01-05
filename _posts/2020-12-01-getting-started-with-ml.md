@@ -82,3 +82,5 @@ I suggest going through the following order
 - Finaly keep practising from [Kaggle](https://www.kaggle.com/){:target="_blank"}.
 
 Apart from the above resources I'll keep sharing additional resources through my newsletter, so make sure you subscribe to it.
+
+{% include disqus.html %}
