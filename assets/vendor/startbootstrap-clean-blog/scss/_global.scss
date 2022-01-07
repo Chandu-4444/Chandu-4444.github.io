@@ -293,10 +293,15 @@ img::-moz-selection {
     margin-bottom: 10px;
 }
 
+
 .newsletter-title {
     color: white;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
     border-bottom: 1px solid white;
+}
+
+.newsletter-container p {
+    margin: 3px;
 }
 
 // For TOC
