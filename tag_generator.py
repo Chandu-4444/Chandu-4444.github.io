@@ -15,13 +15,14 @@ for filename in filenames:
     crawl = False
     for line in f:
         if crawl:
-            current_tags = line.strip().split(':') 
+            current_tags = line.strip().split(':')
             if current_tags[0] == 'tags':
                 if (current_tags[1].strip().startswith('[')):
-                    clean_tag = ''.join(c for c in current_tags[1] if c not in '[]')
+                    clean_tag = ''.join(
+                        c for c in current_tags[1] if c not in '[]')
                     list_tags = map(str.strip, clean_tag.split(','))
                     total_tags.extend(list_tags)
-                else: 
+                else:
                     list_tags = map(str.strip, current_tags[1].strip().split())
                     total_tags.extend(list_tags)
                 crawl = False
@@ -38,14 +39,15 @@ total_tags = set(total_tags)
 old_tags = glob.glob(tag_dir + '*.md')
 for tag in old_tags:
     os.remove(tag)
-    
+
 if not os.path.exists(tag_dir):
     os.makedirs(tag_dir)
 
 for tag in total_tags:
     tag_filename = tag_dir + tag.replace(' ', '_') + '.md'
     f = open(tag_filename, 'a')
-    write_str = '---\nlayout: tagpage\ntitle: \"Tag: ' + tag + '\"\ntag: ' + tag + '\nrobots: noindex\n---\n'
+    write_str = '---\nlayout: tagpage\ntitle: \"Tag: ' + \
+        tag + '\"\ntag: ' + tag + '\nrobots: noindex\n---\n'
     f.write(write_str)
     f.close()
 print("Tags generated, count", total_tags.__len__())
