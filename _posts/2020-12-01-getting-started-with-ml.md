@@ -6,8 +6,9 @@ background: ""
 tags: resources books tips
 use_math: true
 comments: true
-toc: true
 ---
+* toc
+{:toc}
 
 ### So, you're interested in learning ML?
 > "A good start is half the work"

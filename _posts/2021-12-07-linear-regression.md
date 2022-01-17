@@ -6,8 +6,9 @@ background: ""
 tags: theory maths
 use_math: true
 comments: true
-toc: true
 ---
+* toc
+{:toc}
 
 ### Overview
 
