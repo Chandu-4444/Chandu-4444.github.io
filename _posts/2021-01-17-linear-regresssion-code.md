@@ -10,6 +10,9 @@ comments: true
 * toc
 {:toc}
 
+### Prerequisites
+- [Linear Regression](https://chandrakiran.tech/2021/12/07/linear-regression.html)
+- Numpy Basics
 ### What we'll do?
 This blog is about implementing the Linear Regression algorithm from scratch. You might ask, _"Why implementing it from scratch when there are fantastic libraries that does the same thing in about 5 lines of code?"_. That is a valid question! You can look up to **scikit-learn** documentation an code it on your own, but it will be a black box for you. You are never sure why that works, and how that works. Implementing a similiar algorithm on your own will definitely give you a clearer picture.
 
