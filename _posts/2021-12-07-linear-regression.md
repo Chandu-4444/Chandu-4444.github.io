@@ -53,7 +53,7 @@ I intentionally used the term <i>loss</i> initially just to make you get the ess
 </div>
 </div>
 
-Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive) and taking their mean. Now, we need to minimize this function in order to get our best-fit line.
+Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive). Squaring allows us to give more weightage to large errors and less weightage to small errors. For example, if we predict $9.5$ when the actual value is $9.4$ the error turns out to be $0.1$ and its square is $0.01$. If we predict 9 when the actual value is $7$, the error is $2$ and the square is $4$. This way we're handling the errors appropriately. Now, we need to minimize this function in order to get our best-fit line. 
 
 The minimum of **SSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
 
