@@ -22,9 +22,7 @@ If you've gone through [my previous post about linear regression](https://chandr
 
 Looking at the above applications will tell you how useful and important classification is! Let's start learning it.
 
-### Why new algorithm for this? Can't we just use linear regression for this?
 
-That is the first genuine question one can ask. Since classification algorithm can be thought of as a special case of regression, we can use linear regression for classification assuming our target variable is a discrete variable. But the problem is that linear regression is linear in nature and thus we can't use it for classification of non linear natured tasks. Let me show you what is a linear natured task and non linear natured task.
 
 
 

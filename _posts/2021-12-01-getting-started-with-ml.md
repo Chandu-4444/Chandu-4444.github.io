@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Getting Started with Machine Learning."
-subtitle: "World isn't cupcakes & rainbows. I'll try my best to provide you a rough roadmap and resources to get started with Machine Learning."
+subtitle: Machine Learning roadmap
 background: ""
 tags: resources books tips
 use_math: true
