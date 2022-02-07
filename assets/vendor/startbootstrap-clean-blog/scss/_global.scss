@@ -424,3 +424,14 @@ img::-moz-selection {
     border-radius: 50%;
   }
 
+
+
+// For figcaption
+
+figcaption {
+    font-size: 1.1rem;
+    color: rgb(108, 108, 110);
+
+    font-style:italic;
+    font-weight: 400;
+}
