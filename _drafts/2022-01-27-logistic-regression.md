@@ -36,12 +36,12 @@ Getting the intuition behind _logistic regression_ correctly is very rewarding t
     </figure>
 </center>
 
-Look at the above figure. The line $\pi$ seperates both the classes. In higher dimensions, the line becomes hyperplane.  
-The goal of any classification algorithm is to segregrete the input points into their respective classes. Now, in this case we need to find such a hyperplane that classifies the _blue_ and _green_ points correctly ($$y_i \in \{-1, 1\}$$). Simply put, we need to _find the equation of line_ $\pi$ that seperates them.
+Look at the above figure. The line $\mathbf{\pi}$ seperates both the classes. In higher dimensions, the line becomes hyperplane.  
+The goal of any classification algorithm is to segregrete the input points into their respective classes. Now, in this case we need to find such a hyperplane that classifies the _blue_ and _green_ points correctly ($$y_i \in \{-1, 1\}$$). Simply put, we need to _find the equation of line_ $\mathbf{\pi}$ that seperates them.
 
 Let's consider the unit normal to the line 
 $$\mathbf{w}$$ 
-($$ \vert\vert \mathbf{w} \vert\vert = 1$$). Recall that the expression $\mathbf{w}^T \mathbf{x}_p$ gives the distance of the point $\mathbf{x}_p$ from the line $\pi$. Also, look and recall the result below: 
+($$ \vert\vert \mathbf{w} \vert\vert = 1$$). Recall that the magnitude fof the expression $\mathbf{w}^T \mathbf{x}_p$ gives the distance of the point $\mathbf{x}_p$ from the line $\mathbf{\pi}$. Also, look and recall the result below: 
 
 $$
 \Bigg\{ 
@@ -70,11 +70,44 @@ $$
 \mathbf{w}^*\text{ is the optimal solution to the above equation}
 $$
 
-Since $$y_i \text{ and } \mathbf{x}_i$$ are already known and fixed, our objective is to find such optimal $$\mathbf{w}^*$$ that maximizes the above expression. This ensures that most of the terms from $$i=1$$ to $$i=n$$ in the objective function has to be positive i.e classified correctly. Woo.. are we done? No. the objective function has some drawbacks. Let's see what are those and how to overcome them.
+Since $$y_i \text{ and } \mathbf{x}_i$$ are already known and fixed, our objective is to find such optimal $$\mathbf{w}^*$$ that maximizes the above expression. This ensures that most of the terms from $$i=1$$ to $$i=n$$ in the objective function has to be positive i.e classified correctly. Are we done? No, the objective function has some drawbacks. Let's see what are those and how to overcome them.
 
 ### Drawbacks Of Our Initial Objective Function
 
+<center>
+    <figure>
+        <img src="/img/posts/logistic-regression/objective_function.jpg" style="border: 1px solid black; max-width: 70%;">
+        <figcaption>An ideal hyperplane $\mathbf{\pi}_1$ that seperates both the classes. But the objective function isn't maximized.</figcaption>
+    </figure>
+</center>
 
+Look at the above figure. The line $\pi_1$ does a good job in seperating _orange_ and _blue_ points. It miss classified only one _blue_ point as _orange_. Let's now calculate the value of our objective function for this line:
 
+$$
 
+\text{Value of objective function for } \pi_1 = \sum_{i=1}^{11} y_i \mathbf{w}^T \mathbf{x}_i \\
 
+    {\begin{array}{cc}
+          = +1(+1)+1(+1)+1(+1)+1(+1)+1(+1) + [-1(-1)]+ [-1(-1)]+ [-1(-1)]+ [-1(-1)]+ [-1(-1)] + [-1(+100)] \\
+          = 5 + 5 - 100 = 90
+    \end{array}} \\
+$$
+
+We can clearly see that even though the line seems to be a good one, the objective function is not maximized. This is because of one _blue_ point that has been classified incorrectly. The penalty for this misclassification is -100. This effected our objective function a lot. This is an **outlier**. Outliers are the abnormal data points that occurs in the dataset. These outliers must be handled with care. This outlier effected our objective function a lot. But we cannot deny the fact that the line is a good one. the only drawback is that the measure we used to evaluate it is not correct. We need to modify our objective function.
+
+### Formulating the correct objective function
+
+The idea is to **squash** the signed distance ($$\mathbf{w}^T\mathbf{x}_i$$) to a value between 0 and 1. If the value of the signed distance is positive, we squash it to 1 (We take class $$1$$ to be on the same direction as $$\mathbf{w}$$). If the value of the signed distance is negative, we squash it to 0 (We now assume our class label to be $$0$$). We do this squashing using **sigmoid function**.
+
+<center>
+    <figure>
+        <img src="/img/posts/logistic-regression/sigmoid.png" style="border: 1px solid black; max-width: 70%;">
+        <figcaption>Sigmoid Function</figcaption>
+    </figure>
+</center>
+
+Sigmoid function has a range between $$[0, 1]$$. This makes it perfectly suitable for binary classification tasks. Looking at the below equation can tell you a lot about the sigmoid function.
+
+$$
+\sigma(z) = \frac{1}{1+e^{-z}}
+$$
