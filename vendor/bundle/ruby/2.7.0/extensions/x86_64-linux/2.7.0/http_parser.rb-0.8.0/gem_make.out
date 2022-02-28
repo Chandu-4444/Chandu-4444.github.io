@@ -1,5 +1,5 @@
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
-/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220117-10712-jukbun.rb extconf.rb
+/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220219-26680-p0n30k.rb extconf.rb
 creating Makefile
 
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
@@ -13,4 +13,4 @@ linking shared-object ruby_http_parser.so
 
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20220117-10712-186htki
+/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20220219-26680-1kjbhms

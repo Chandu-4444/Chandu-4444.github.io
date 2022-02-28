@@ -1,5 +1,5 @@
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c
-/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220117-10712-5ozxpz.rb extconf.rb
+/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220219-26680-148ou1j.rb extconf.rb
 checking for ffi.h... no
 checking for ffi.h in /usr/local/include,/usr/include/ffi,/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ffi,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/ffi... no
 checking for whether -Wl,--exclude-libs,ALL is accepted as LDFLAGS... yes
@@ -38,28 +38,28 @@ libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/luna/Documents/Chandu-4444.gi
 libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/include -Iinclude -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src -Wall -fexceptions -c /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/raw_api.c  -fPIC -DPIC -o src/.libs/raw_api.o
 /bin/bash ./libtool  --tag=CC   --mode=compile gcc -DHAVE_CONFIG_H -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi  -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/include -Iinclude -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src   -Wall -fexceptions -c -o src/java_raw_api.lo /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c
 libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi -I. -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/include -Iinclude -I/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src -Wall -fexceptions -c /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c  -fPIC -DPIC -o src/.libs/java_raw_api.o
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function 'ffi_java_raw_call':
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:317:3: warning: 'ffi_java_raw_to_ptrarray' is deprecated [-Wdeprecated-declarations]
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function ‘ffi_java_raw_call’:
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:317:3: warning: ‘ffi_java_raw_to_ptrarray’ is deprecated [-Wdeprecated-declarations]
   317 |   ffi_java_raw_to_ptrarray (cif, raw, avalue);
       |   ^~~~~~~~~~~~~~~~~~~~~~~~
 /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:76:1: note: declared here
    76 | ffi_java_raw_to_ptrarray (ffi_cif *cif, ffi_java_raw *raw, void **args)
       | ^~~~~~~~~~~~~~~~~~~~~~~~
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function 'ffi_java_translate_args':
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:328:3: warning: 'ffi_java_raw_size' is deprecated [-Wdeprecated-declarations]
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function ‘ffi_java_translate_args’:
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:328:3: warning: ‘ffi_java_raw_size’ is deprecated [-Wdeprecated-declarations]
   328 |   ffi_java_raw *raw = (ffi_java_raw*)alloca (ffi_java_raw_size (cif));
       |   ^~~~~~~~~~~~
 /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:45:1: note: declared here
    45 | ffi_java_raw_size (ffi_cif *cif)
       | ^~~~~~~~~~~~~~~~~
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:331:3: warning: 'ffi_java_ptrarray_to_raw' is deprecated [-Wdeprecated-declarations]
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:331:3: warning: ‘ffi_java_ptrarray_to_raw’ is deprecated [-Wdeprecated-declarations]
   331 |   ffi_java_ptrarray_to_raw (cif, avalue, raw);
       |   ^~~~~~~~~~~~~~~~~~~~~~~~
 /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:157:1: note: declared here
   157 | ffi_java_ptrarray_to_raw (ffi_cif *cif, void **args, ffi_java_raw *raw)
       | ^~~~~~~~~~~~~~~~~~~~~~~~
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function 'ffi_prep_java_raw_closure':
-/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:369:3: warning: 'ffi_prep_java_raw_closure_loc' is deprecated [-Wdeprecated-declarations]
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c: In function ‘ffi_prep_java_raw_closure’:
+/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:369:3: warning: ‘ffi_prep_java_raw_closure_loc’ is deprecated [-Wdeprecated-declarations]
   369 |   return ffi_prep_java_raw_closure_loc (cl, cif, fun, user_data, cl);
       |   ^~~~~~
 /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi/src/java_raw_api.c:337:1: note: declared here
@@ -135,6 +135,7 @@ make[3]: Entering directory '/home/luna/Documents/Chandu-4444.github.io/vendor/b
 make[3]: Nothing to be done for 'all'.
 make[3]: Leaving directory '/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi-x86_64-linux-gnu/man'
 make[3]: Entering directory '/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi-x86_64-linux-gnu'
+make[3]: Nothing to be done for 'all-am'.
 make[3]: Leaving directory '/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi-x86_64-linux-gnu'
 make[2]: Leaving directory '/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi-x86_64-linux-gnu'
 make[1]: Leaving directory '/home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/ffi-1.15.5/ext/ffi_c/libffi-x86_64-linux-gnu'
@@ -162,4 +163,4 @@ compiling Types.c
 compiling Variadic.c
 compiling ffi.c
 linking shared-object ffi_c.so
-/usr/bin/install -c -m 0755 ffi_c.so ./.gem.20220117-10712-141bduy
+/usr/bin/install -c -m 0755 ffi_c.so ./.gem.20220219-26680-1nrwsmr

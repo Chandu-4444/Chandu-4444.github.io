@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(rubysitearchprefix)/vendor_ruby/$(ruby_version)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20220117-10712-141bduy
-sitelibdir = $(DESTDIR)./.gem.20220117-10712-141bduy
+sitearchdir = $(DESTDIR)./.gem.20220219-26680-1nrwsmr
+sitelibdir = $(DESTDIR)./.gem.20220219-26680-1nrwsmr
 sitedir = $(DESTDIR)/usr/local/lib/site_ruby
 rubyarchdir = $(rubyarchprefix)/$(ruby_version)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -84,11 +84,11 @@ debugflags = -ggdb3
 warnflags = 
 cppflags = 
 CCDLFLAGS = -fPIC
-CFLAGS   = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.7-QclakL/ruby2.7-2.7.0=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC $(ARCH_FLAG)
+CFLAGS   = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.7-sl7GmE/ruby2.7-2.7.0=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
 CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\" -Wdate-time -D_FORTIFY_SOURCE=2 $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.7-QclakL/ruby2.7-2.7.0=. -fstack-protector-strong -Wformat -Werror=format-security $(ARCH_FLAG)
+CXXFLAGS = $(CCDLFLAGS) -g -O2 -fdebug-prefix-map=/build/ruby2.7-sl7GmE/ruby2.7-2.7.0=. -fstack-protector-strong -Wformat -Werror=format-security $(ARCH_FLAG)
 ldflags  = -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--exclude-libs,ALL -pthread
 dldflags = -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now 
 ARCH_FLAG = 
@@ -141,7 +141,7 @@ LIBS = $(LIBRUBYARG_SHARED)  -lm   -lc
 ORIG_SRCS = AbstractMemory.c ArrayType.c Buffer.c Call.c ClosurePool.c DynamicLibrary.c Function.c FunctionInfo.c LastError.c LongDouble.c MappedType.c MemoryPointer.c MethodHandle.c Platform.c Pointer.c Struct.c StructByValue.c StructLayout.c Thread.c Type.c Types.c Variadic.c ffi.c
 SRCS = $(ORIG_SRCS) 
 OBJS = AbstractMemory.o ArrayType.o Buffer.o Call.o ClosurePool.o DynamicLibrary.o Function.o FunctionInfo.o LastError.o LongDouble.o MappedType.o MemoryPointer.o MethodHandle.o Platform.o Pointer.o Struct.o StructByValue.o StructLayout.o Thread.o Type.o Types.o Variadic.o ffi.o
-HDRS = $(srcdir)/LastError.h $(srcdir)/Struct.h $(srcdir)/MappedType.h $(srcdir)/Type.h $(srcdir)/StructByValue.h $(srcdir)/compat.h $(srcdir)/Types.h $(srcdir)/extconf.h $(srcdir)/Platform.h $(srcdir)/LongDouble.h $(srcdir)/Function.h $(srcdir)/rbffi_endian.h $(srcdir)/rbffi.h $(srcdir)/MethodHandle.h $(srcdir)/Thread.h $(srcdir)/Pointer.h $(srcdir)/DynamicLibrary.h $(srcdir)/ArrayType.h $(srcdir)/MemoryPointer.h $(srcdir)/AbstractMemory.h $(srcdir)/ClosurePool.h $(srcdir)/Call.h
+HDRS = $(srcdir)/compat.h $(srcdir)/MethodHandle.h $(srcdir)/DynamicLibrary.h $(srcdir)/rbffi.h $(srcdir)/Function.h $(srcdir)/Thread.h $(srcdir)/Call.h $(srcdir)/AbstractMemory.h $(srcdir)/LongDouble.h $(srcdir)/rbffi_endian.h $(srcdir)/Pointer.h $(srcdir)/Type.h $(srcdir)/Types.h $(srcdir)/Platform.h $(srcdir)/MemoryPointer.h $(srcdir)/MappedType.h $(srcdir)/StructByValue.h $(srcdir)/Struct.h $(srcdir)/ClosurePool.h $(srcdir)/extconf.h $(srcdir)/ArrayType.h $(srcdir)/LastError.h
 LOCAL_HDRS = 
 TARGET = ffi_c
 TARGET_NAME = ffi_c

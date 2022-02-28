@@ -1,5 +1,5 @@
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
-/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220117-10712-rck7mu.rb extconf.rb
+/usr/bin/ruby2.7 -I /usr/lib/ruby/2.7.0 -r ./siteconf20220219-26680-jur7xu.rb extconf.rb
 creating Makefile
 
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.so
 
 current directory: /home/luna/Documents/Chandu-4444.github.io/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20220117-10712-o2q7mz/sassc
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20220219-26680-way8zq/sassc
