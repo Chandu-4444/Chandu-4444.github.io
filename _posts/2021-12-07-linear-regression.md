@@ -310,4 +310,4 @@ That's the mathematical reason behind the first ML algorithm you've probably lea
 
 I post all the remaining classic ML algorithms and few techniques on weekly basis. Do keep checking out. Try subscribing to my [RSS Feed](https://feedburner.google.com/fb/a/mailverify?uri=chandrakiran/VDNx){:target="_blank"} to receive updates.
 
-{% include disqus.html %}
+<!-- {% include disqus.html %} -->

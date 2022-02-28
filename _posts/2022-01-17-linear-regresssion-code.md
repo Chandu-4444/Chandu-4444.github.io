@@ -11,7 +11,7 @@ comments: true
 {:toc}
 
 ### Prerequisites
-- [Linear Regression](https://chandrakiran.tech/2021/12/07/linear-regression.html)
+- [Linear Regression](https://chandu-4444.github.io/2021/12/07/linear-regression.html)
 - Numpy Basics
 
 ### What we'll do?
@@ -43,7 +43,7 @@ print("Shape of X, y = ",X.shape,y.shape)
 
 ### Building our model
 
-Since we have a 5D independent variable, we'll use [OLS for matrice](https://chandrakiran.tech/2021/12/07/linear-regression.html#ols-for-matrices)
+Since we have a 5D independent variable, we'll use [OLS for matrice](https://chandu-4444.github.io/2021/12/07/linear-regression.html#ols-for-matrices)
 I'll create a class for the implementation. This is how models were implemented in **scikit-learn**. 
 
 

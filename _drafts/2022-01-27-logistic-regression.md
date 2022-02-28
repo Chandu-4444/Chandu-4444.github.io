@@ -29,7 +29,7 @@ _Note that I'll always refer to binary classification (two-class classification)
 
 ### Why not use Linear Regression instead?
 
-[Linear Regression](https://chandrakiran.tech/2021/12/07/linear-regression.html) can be used for classification problems. But it has some serious drawbacks. Let's look at it by considering an example.
+[Linear Regression](https://chandu-4444.github.io/2021/12/07/linear-regression.html) can be used for classification problems. But it has some serious drawbacks. Let's look at it by considering an example.
 
 Let's say we have a [balanced dataset](#balanced-vs-imbalanced) of $20$ people. Our dataset contains the information about customers whether they made a purchase or not based on their age. Here, **"purchased"** is a binary variable $0$ (they didn't purchase) or $1$ (they made a purchase). 
 
@@ -52,7 +52,7 @@ The plot our dataset looks like this:
     </figure>
 </center>
 
-Now, let's use linear regression to classify the following data points. Remember from [my previous post](https://chandrakiran.tech/2021/12/07/linear-regression.html) that the objective of the linear regression is to mimimize the difference between the actual value and predicted value. Simply put, it finds a line that fits the data well. So, the bets-fit line for the data above will be as follows:
+Now, let's use linear regression to classify the following data points. Remember from [my previous post](https://chandu-4444.github.io/2021/12/07/linear-regression.html) that the objective of the linear regression is to mimimize the difference between the actual value and predicted value. Simply put, it finds a line that fits the data well. So, the bets-fit line for the data above will be as follows:
 
 <center>
    <figure>
@@ -147,4 +147,4 @@ The diagram of the **Sigmoid Function** is as follows:
     </figure>
 </center>
 
-Look at that! The range of logistic function is between $0$ and $1$ (Our desired property for classification).
+Look at that! The range of logistic function is between $0$ and $1$ (Our desired property for classification). 
