@@ -147,4 +147,102 @@ The diagram of the **Sigmoid Function** is as follows:
     </figure>
 </center>
 
-Look at that! The range of logistic function is between $0$ and $1$ (Our desired property for classification). 
+Look at that! The range of logistic function is between $0$ and $1$ (Our desired property for classification). Since the problem with our so called "linear regression classification" model is its range $[-\infty, \infty]$, why not wrap it with sigmoid function? That's the main idea of logistic regression. Let's formulate this mathematically:
+
+$$
+z = \hat{m}x + \hat{c} \\
+
+f(z) = \frac{1}{1+e^{-z}} \\
+
+$$
+
+Now our final prediction $f(z)$ will have nice probablistic meaning, it gives the probability of z belonging to class $1$. Since there are only two class labels $0$ and $1$, this also means that the probability of $z$ belonging to class $0$ can be found using $1-f(z)$. 
+
+Let's look at the figure if we use logistic regression for imbalanced data we've seen before.
+
+<center>
+   <figure>
+        <img src="https://miro.medium.com/max/459/1*GgUYnIinlmTUnEc8CEesjQ.png
+" style="border: 1px solid black; max-width: 70%;">
+        <figcaption>Using Sigmoid function for imbalanced dataset</figcaption>
+    </figure>
+</center>
+
+This is perfect! Now how do we find this fit? The only variables we aren't sure about in our sigmoid are $\hat{m}$ and $\hat{c}$ . If we were to find these parameters as we did for linear regression, we would be so wrong. The objective of the linear regression is to find the best fit line that minimizes the distance between predicted value and actual value. This is not the case for logistic regression. So, we'll now derive the loss function for logistic regression.
+
+### Loss Function for Logistic Regression
+
+The loss function for linear regression is **squared loss**. We found the optimal parameters by minimising this loss. What is the loss function for logistic regression? To answer this, we need to get through another question: **"When can we say that we have a good logistic model?"**. The answer to this is the higher the number of correctly classified points, the better is the model. 
+
+If model **A** classifies $90$ out of $100$ points correctly and model **B** classifies $60$ out of $100$ points correctly, we say that model **A** is better than model **B** (**A** out performs model **B**). We need to maxmize this count. But only maximizing the count will not be sufficient! Since the outputs of the logistic function are probabilities, we need to penalize the misclassification proportional to the probability. 
+
+To understand this, consider two points $x_1, x_2$ both belonging to class $1$. Our model predicted the probability of $x_1$ belonging to class $1$ as $0.47$ and $x_2$ belonging to class $1$ as 0.1 . Since both the points belong to class $1$, we need both the predicted values to be greater than $0.5$. We need to punish our model for this *misclassification*. But the punishment for misclassification for point $x_1$ has to be less than the punishment for point $x_2$. To achieve this, we need to consider the probabilities too in our loss function.
+
+### Likelihood Estimation
+
+Given all our $x_i$'s and for given parameters $\hat{m}$ and $\hat{c}$ , what is the distribution of $y_i$'s? If we were able to find this distribution, then we can sample that distribution to find the labels of any given data. Putting this statement mathematically we get $P(\mathbf{y}|\mathbf{X};\mathbf{W})$ called the **likelihood function** (function of $\mathbf{W}$) means that "Given $\mathbf{X}$ (the matrix which contains all $x_i$'s) and $\mathbf{W}$ (the matrix containing our parameters), what is the probability that the outcome of the distribution is $\mathbf{y}$?". Now let's stress upon the term **"distribution"**, this distribution if determined by $\mathbf{X}$, $\mathbf{W}$, and $\mathbf{y}$. But the only thing we aren't sure about is the matrix $\mathbf{W}$. It is obvious that we need to find this $\mathbf{W}$, but on what condition? Remember that for linear regression, we found this $\mathbf{W}$ by minimizing the squared loss. How do we do this in case of logistic regression? 
+
+For a given $x_i$ we're predicting the probability of getting a $y_i$ as output paremeterized on $\mathbf{W}$. We need to maximize this probability so as to find the distribution that gives high probability for each $y_i$ (We're need to be highly certain that the label of the given input is $y_i$). That is, we need to maximize the likelihood function. This is called **maximum likelihood estimation**. Mathematically,
+
+$$
+L(\mathbf{w}) = P(\mathbf{y}|\mathbf{X};\mathbf{W})
+$$
+
+Since each obesrvation is independent of each, we can write it as (Recall that independent events in conditional probability can be expressed as product):
+
+$$
+L(\mathbf{W}) = \Pi_{i=1}^{n}P(y_i|x_i;\mathbf{W})
+$$
+
+We need to find the matrix $\mathbf{W}$ that maximizes this.
+
+ But doing that would be painful (atleast in this form) since there are many  multiplications in our function. Instead of maximizing the function $L(\mathbf{W})$, we can maximize any strictly incerasing function of $L(\mathbf{W})$. What if we change all the multiplications to addition? Yeah, you're right! we'll use **log** to do this:
+
+$$
+\begin{split}
+log(L(\mathbf{W})) & = \log(\Pi_{i=1}^{n}P(y_i|x_i;\mathbf{W})) \\
+& = \sum_{i=1}^n\log(P(y_i|x_i;\mathbf{W}))\\
+\end{split}
+$$
+
+Now, this seems good to differentiate! Note that **log** is strictly increasing function, so maximizing this will result in maximizing $L(\mathbf{W})$.
+
+### Maximum Likelihood Estimation for Logistic Regression
+
+Recall that the out of our $f(z)$ or $f(\hat{m}x+\hat{c})$ gives the probability of $x$ belonging to class 1. Using this, we can write:
+
+$$
+P(y=1|x;(\hat{m}, \hat{c})) = f(\hat{m}x+\hat{c}) \\
+P(y=0|x;(\hat{m}, \hat{c})) = 1 - f(\hat{m}x+\hat{c})
+$$
+
+ The above expressions can be merged as:
+
+$$
+P(y|x;(\hat{m}, \hat{c})) = (f(\hat{m}x+\hat{c}))^y(1-f(\hat{m}x+\hat{c}))^{1-y}
+$$
+
+The above equation can be assumed as a likelihood function for $\hat{m}, \hat{c}$:
+
+$$
+\begin{split}
+L(\mathbf{W}) & = P(\mathbf{y}|\mathbf{X;\mathbf{W}}) \\
+& = \Pi_{i=1}^nP(y_i|x_i;(\hat{m}, \hat{c})) \\
+& = \Pi_{i=1}^n(f(\hat{m}x_i+\hat{c}))^{y_i}(1-f(\hat{m}x_i+\hat{c}))^{1-y_i}
+\end{split}
+$$
+
+We can apply **log** on both sides:
+
+$$
+\begin{split}
+l(\mathbf{W}) & = \log(L(\mathbf{W})) \\
+& = \sum_{i=1}^n y_i\log(f(\hat{m}x_i+\hat{c})) + (1-y_i)\log(1-f(\hat{m}x_i+\hat{c}))
+\end{split}
+$$
+
+Now that's our objective function. We need to find $\hat{m}, \hat{c}$ that maximizes the above function. Hey wait! We knew about **gradient descent** that finds the minimum of a function. How do we find the maximum using gradient descent? Well, we can use the _negative_ of the above function and find the minimum using gradient descent. Our MLE now turned into a gradient descent optimization function.
+
+
+### Solving the Objective Function using Gradient Descent
+
