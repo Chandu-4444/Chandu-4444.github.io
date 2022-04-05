@@ -244,5 +244,3 @@ $$
 Now that's our objective function. We need to find $\hat{m}, \hat{c}$ that maximizes the above function. Hey wait! We knew about **gradient descent** that finds the minimum of a function. How do we find the maximum using gradient descent? Well, we can use the _negative_ of the above function and find the minimum using gradient descent. Our MLE now turned into a gradient descent optimization function.
 
 
-### Solving the Objective Function using Gradient Descent
-
