@@ -2,6 +2,8 @@ $background: #272822;
 
 .highlight {
   background-color: $background;
+  border-radius: 5px solid black !important;
+  
 
   .hll {
     background-color: #49483e;
@@ -128,9 +130,10 @@ $background: #272822;
 }
 
 code{
-  background-color: "#282C34";
-  color: whitesmoke;}
+  background-color: #282C34;
+  color: whitesmoke;
+}
 pre {
-  background-color: "#282C34";
+  background-color: #282C34;
   color: whitesmoke;
 }

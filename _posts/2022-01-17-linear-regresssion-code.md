@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Linear Regression from scratch code in Python"
-subtitle: "Implementation of Linear Regressin algorithm from scratch"
+subtitle: "Implementation of Linear Regression algorithm from scratch"
 background: ""
 tags: code
 use_math: true
