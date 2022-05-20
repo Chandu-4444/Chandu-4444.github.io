@@ -52,7 +52,7 @@ header_pages:
   - about.md
 
 # Build settings
-theme: plainwhite
+# theme: plainwhite
 
 markdown: kramdown
 
