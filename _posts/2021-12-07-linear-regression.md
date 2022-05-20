@@ -3,14 +3,9 @@ layout: post
 title: "Linear Regression: What is it?"
 subtitle: "Looking at regression as a mathematician."
 background: ""
-tags: theory maths
+categories: theory maths
 use_math: true
-comments: true
 ---
-* toc
-{:toc}
-
-### Overview
 
 Linear regression has been regarded as the basic yet powerful _machine learning_ algorithm. Most beginners start their machine learning journey with this topic. This generally is a simple algorithm to use and understand. It intuitively makes sense, the **loss function**, the **best-fit** line etc. They all seem reasonable at first glance. But, did you ever think why that specific loss function is being used apart from other alternatives? What's there in it to understand mathematically? How will this help us? I'll try to answer all of these questions in this blog. Let's get started!
 
@@ -53,7 +48,7 @@ I intentionally used the term <i>loss</i> initially just to make you get the ess
 </div>
 </div>
 
-Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive). Squaring allows us to give more weightage to large errors and less weightage to small errors. For example, if we predict $9.5$ when the actual value is $9.4$ the error turns out to be $0.1$ and its square is $0.01$. If we predict 9 when the actual value is $7$, the error is $2$ and the square is $4$. This way we're handling the errors appropriately. Now, we need to minimize this function in order to get our best-fit line. 
+Our **SSE** obeys all the properties of a loss function. We're simply adding all the squares of prediction errors (To keep our function positive). Squaring allows us to give more weightage to large errors and less weightage to small errors. For example, if we predict $9.5$ when the actual value is $9.4$ the error turns out to be $0.1$ and its square is $0.01$. If we predict 9 when the actual value is $7$, the error is $2$ and the square is $4$. This way we're handling the errors appropriately. Now, we need to minimize this function in order to get our best-fit line.
 
 The minimum of **SSE** occurs at 0. But we may never hit 0 in our predictions, this can be evident from the data. The data isn't quite linear, there exists some random error among them. This randomness prevents us from hitting absolute 0! This error is generally represented with $\epsilon$, modifying our original function to $y=mx+c+\epsilon$. So we can never actually approximate $y$. But we can try our best to bring the error close to 0.
 
@@ -266,12 +261,15 @@ $$
 Now, that gives us the corresponding _weights_ that can be used to construct a hyperplane that best fits our data $$\mathbf{X}$$. This equation is called **Normal Equation**. This is the naive mathematicians way of dealing with _linear regression_. In the next section, we'll do this in a different and common way through **gradient descent** (the ML guy way!).
 
 ### Gradient Descent
+
 Gradient descent, it's everywhere in ML. Whenever you need to optimise a function in ML gradient descent (Or some of its variants) is the way. Understanding this (correctly) will make us look these classic ML algorithms through a different perspective (clearer perspective).
 
 Let me start with what actually gradient descent is:
+
 > "Gradient descent is a **first-order** iterative **optimization algorithm** for finding a local minimum of a **differentiable function**."
 
 That's the definition I've found on [Wikipedia](https://en.wikipedia.org/wiki/Gradient_descent#:~:text=Gradient%20descent%20is%20a%20first-order%20iterative%20optimization%20algorithm,as%20gradient%20ascent..%20Gradient%20descent%20is%20generally%20). Surely it makes some sense, if not don't worry I'll take you through it.
+
 - **optimization algorithm**: An optimization algorithm is a procedure which is executed iteratively by comparing various solutions till an optimum or a satisfactory solution is found. In gradient descent context, satisfactory result indicated global minima.
 - **first-order**: In order to find the mentioned satisfactory results, we'll rely on first-order derivatives in first-order optimization algorithms.
 - **differential function**: We need the optimization function to be derivable in order to find its derivative.
@@ -299,15 +297,14 @@ $$
 $$
 
 - When $$\mathbf{W}$$ has the same sign as $$\eta \nabla\text{SSE}$$ indicates that $$\mathbf{W}$$ is towards the steepest ascent. We then perform a vector addition with $$- \eta \nabla\text{SSE}$$ so that the magnitude of $$\mathbf{W}$$ gets decreased (we're taking $$\mathbf{W}$$ towards steepest descent).
-- When $$\mathbf{W}$$ and $$\eta \nabla\text{SSE}$$ have opposite signs indicates that $$\mathbf{W}$$ is towards the steepest descent. We then perform a vector addition with $$- \eta \nabla\text{SSE}$$ so that the magnitude of $$\mathbf{W}$$ gets decreased further. 
+- When $$\mathbf{W}$$ and $$\eta \nabla\text{SSE}$$ have opposite signs indicates that $$\mathbf{W}$$ is towards the steepest descent. We then perform a vector addition with $$- \eta \nabla\text{SSE}$$ so that the magnitude of $$\mathbf{W}$$ gets decreased further.
 
 This happens till we get a $$0$$ gradient (remember that 0 indicates a global optimum, global minima in this case) where there would be no update to $$\mathbf{W}$$. This will be (almost) the same $$\mathbf{W}$$ matrix we got earlier with our _normal equation_
 
-I guess now you got how gradient descent works! 
+I guess now you got how gradient descent works!
 
 ### Closing Notes
+
 That's the mathematical reason behind the first ML algorithm you've probably learnt! Stay tuned for more :) Also, do let me know in the comments if you find any error or any suggestion.
 
-I post all the remaining classic ML algorithms and few techniques on weekly basis. Do keep checking out. Try subscribing to my [RSS Feed](https://feedburner.google.com/fb/a/mailverify?uri=chandrakiran/VDNx){:target="_blank"} to receive updates.
-
-<!-- {% include disqus.html %} -->
+I post all the remaining classic ML algorithms and few techniques on weekly basis. Do keep checking out. Try subscribing to my [RSS Feed](https://feedburner.google.com/fb/a/mailverify?uri=chandrakiran/VDNx){:target="\_blank"} to receive updates.
