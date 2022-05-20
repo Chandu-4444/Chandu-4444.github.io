@@ -55,16 +55,9 @@ header_pages:
 # theme: plainwhite
 
 markdown: kramdown
-
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-toc
-
-toc:
-  min_level: 1
-  max_level: 3
-  list_class: toc
-  sublist_class: toc__sublist
