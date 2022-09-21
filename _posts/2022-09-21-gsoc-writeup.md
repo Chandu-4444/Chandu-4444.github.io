@@ -7,8 +7,6 @@ categories: blog gsoc
 # use_math: true
 ---
 
-## Introduction
-
 This summer, I have worked in the development of textual modules in FastAI.jl for GSoC'22 under the NumFOCUS organization. The goal of the project is to develop textual pipelines in FastAI.jl (for text classification and text generation to be specific).
 
 The project is divided into two parts:
