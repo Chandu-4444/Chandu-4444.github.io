@@ -134,7 +134,7 @@ Before loading the enoded data into the model, we need to change the structure o
 julia> batches = FastText.load_batchseq(data, task, batch_size = 4)
 julia> batches[1][1] # Input from the first batch
 226-element Vector{Vector{Int64}}:
- [38, 38, 38, 38]
+ [38, 38, 38, 38] # first tokens of first timestep for 4 sequences in the batch
  [3, 3, 3, 3]
  [532, 1250, 239, 15]
  [397, 5, 8, 17]
@@ -253,7 +253,7 @@ LanguageModel{Vector{String},
    }
 ```
 
-Now we need to batch the data for speeding up the training process. We'll use `load_genseq` function to do this batching. This funnction takes in the data and batches the input and pads the `OneHot` encoded target data with `<PAD>` token.
+Now we need to batch the data for speeding up the training process. We'll use `load_genseq` function to do this batching. This funnction takes in the data and batches the input and pads the `OneHot` encoded target data with `<PAD>` token. This function also shifts the target by one token to the right and input by one token to the left. This is done to make the model predict the next token given the previous token.
 
 ```julia
 julia> batches = FastText.load_genseq(data, task, batch_size=4)
@@ -349,3 +349,18 @@ julia> batches[1][2]
  Learner()
  julia> fit!(learner, 1)
 ```
+
+## Status of PRs
+
+| Link to PR                                              | Details                                           | Status         |
+| ------------------------------------------------------- | ------------------------------------------------- | -------------- |
+| [PR #207](https://github.com/FluxML/FastAI.jl/pull/207) | Container and data block for classification data. | Merged         |
+| [PR #245](https://github.com/FluxML/FastAI.jl/pull/245) | Classification task.                              | Merged         |
+| [PR #250](https://github.com/FluxML/FastAI.jl/pull/250) | Text model integration (classification).          | Not yet merged |
+| [PR #258](https://github.com/FluxML/FastAI.jl/pull/258) | Text generation container, task, model.           | Not yet merged |
+
+## Future work
+
+- Add support for pretraining language model with WikiText-103 dataset.
+- Add support for sharing embeddings of a pretrained model for finetuning.
+- Try implementing BPTT for text generation to avoid memory issue (if possible).
