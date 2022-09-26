@@ -363,7 +363,7 @@ julia> batches[1][2]
 
 - Add support for pretraining language model with WikiText-103 dataset.
 - Add support for sharing embeddings of a pretrained model for finetuning.
-- Try implementing BPTT for text generation to avoid memory issue (if possible).
+- Try implementing BPTT for text generation to avoid memory issue on local/colab (if possible).
 
 ## Notebook Links
 
