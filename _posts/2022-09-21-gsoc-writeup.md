@@ -364,3 +364,8 @@ julia> batches[1][2]
 - Add support for pretraining language model with WikiText-103 dataset.
 - Add support for sharing embeddings of a pretrained model for finetuning.
 - Try implementing BPTT for text generation to avoid memory issue (if possible).
+
+## Notebook Links
+
+- [Text Classification](https://drive.google.com/file/d/15-CXOHHR6m3HUvb3J7xKLRAHAd80HNbo/view?usp=sharing)
+- [Text Generation](https://drive.google.com/file/d/1xLPoY3VaPTni3R8dIyoOt3LjNmXaAmrf/view?usp=sharing)
