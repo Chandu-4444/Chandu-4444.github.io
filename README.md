@@ -220,3 +220,4 @@ The theme is available as open source under the terms of the [MIT License](https
 ## More themes
 
 - [Texture](https://github.com/samarsault/texture)
+
